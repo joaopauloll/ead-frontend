@@ -18,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {MatListModule} from '@angular/material/list';
     MatInputModule,
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
   ],
