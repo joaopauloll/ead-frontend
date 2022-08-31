@@ -9,7 +9,7 @@ export class CourseListComponent implements OnInit {
 
   constructor() { }
 
-  courses = [1, 2, 3, 4, 5, 6];
+  courses = ["Curso Angular", "Curso ASP.NET Core", "Curso React", "Curso table_jim", "Curso testejp2", "Curso DudaGourmet"];
 
   ngOnInit(): void {
   }

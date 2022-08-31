@@ -9,6 +9,8 @@ export class CourseDetailsComponent implements OnInit {
 
   constructor() { }
 
+  lessons = [1, 2, 3, 4, 5, 6];
+
   ngOnInit(): void {
   }
 
