@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-course-list',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseListComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   courses = ["Curso Angular", "Curso ASP.NET Core", "Curso React", "Curso table_jim", "Curso testejp2", "Curso DudaGourmet"];
+  my_courses = ["Curso Angular", "Curso ASP.NET Core", "Curso React"];
+
 
   ngOnInit(): void {
   }

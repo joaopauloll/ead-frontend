@@ -7,24 +7,43 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- <div *ngFor="let course of courses"> -->
-    <mat-card *ngFor="let course of courses" class="course-card">
-      <mat-card-title>
-        <a href="courses/:courseId" class="title">{{ course }}</a>
-      </mat-card-title>
-      <mat-card-subtitle>Front-End</mat-card-subtitle>
-      <mat-card-content>
-        <p>This card has divider and indeterminate progress as footer</p>
-      </mat-card-content>
-      <mat-divider inset></mat-divider>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-      <mat-card-footer>
-        <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
-      </mat-card-footer>
-    </mat-card>
-    <!-- </div> -->
+    <div *ngIf="router.url === '/courses'; else mycourses">
+      <mat-card *ngFor="let course of courses" class="course-card">
+        <mat-card-title>
+          <a href="courses/:courseId" class="title">{{ course }}</a>
+        </mat-card-title>
+        <mat-card-subtitle>Front-End</mat-card-subtitle>
+        <mat-card-content>
+          <p>This card has divider and indeterminate progress as footer</p>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    <ng-template #mycourses>
+      <mat-card *ngFor="let mycourse of my_courses" class="course-card">
+        <mat-card-title>
+          <a href="courses/:courseId" class="title">{{ mycourse }}</a>
+        </mat-card-title>
+        <mat-card-subtitle>Front-End</mat-card-subtitle>
+        <mat-card-content>
+          <p>This card has divider and indeterminate progress as footer</p>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+        </mat-card-footer>
+      </mat-card>
+    </ng-template>
   </body>
 </html>

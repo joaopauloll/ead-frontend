@@ -24,6 +24,9 @@
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
+    <button mat-icon-button routerLink="profile" class="app-title">
+      <mat-icon>person</mat-icon>
+    </button>
   </mat-toolbar>
 
   <mat-sidenav-container
@@ -41,12 +44,14 @@
         <a mat-list-item routerLink="courses"
           ><mat-icon>lock</mat-icon>Todos os Cursos</a
         >
-        <a mat-list-item routerLink="courses"
+        <a mat-list-item routerLink="my-courses"
           ><mat-icon>lock_open</mat-icon>Meus Cursos</a
         >
-        <a mat-list-item routerLink=""><mat-icon>group</mat-icon>Quem Somos</a>
-        <a mat-list-item routerLink="">
-          <mat-icon class="phone-icon">phone</mat-icon> Contato
+        <a mat-list-item routerLink="about"
+          ><mat-icon>group</mat-icon>Quem Somos</a
+        >
+        <a mat-list-item routerLink="contact">
+          <mat-icon class="phone-icon">phone</mat-icon> Fale Conoscos
         </a>
       </mat-nav-list>
     </mat-sidenav>
