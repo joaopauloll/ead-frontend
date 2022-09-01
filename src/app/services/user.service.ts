@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models/User.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url = 'https://localhost:5000/';
+  url = 'http://localhost:5000/';
   constructor(private http: HttpClient) { }
 
-  create(dividendo: number, divisor: number) {
-      return this.http.get(this.url + "Dividir?Dividendo=" + dividendo + "&Divisor=" + divisor);
+  create(user: User) {
+      return this.http.post(this.url + "api/users", user);
   }
 }
