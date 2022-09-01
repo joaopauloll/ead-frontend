@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { CourseListComponent } from './course-list/course-list.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomeComponent } from './components/home/home.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

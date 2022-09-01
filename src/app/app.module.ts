@@ -19,15 +19,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { HomeComponent } from './home/home.component';
-import { CourseListComponent } from './course-list/course-list.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomeComponent } from './components/home/home.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 @NgModule({
