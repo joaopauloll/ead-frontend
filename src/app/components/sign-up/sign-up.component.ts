@@ -22,6 +22,8 @@ export class SignUpComponent {
 
   submit() {
     if (this.form.valid) {
+      var y: number = +this.form.value.role;
+      this.form.value.role = y;
       console.log(this.form.value);
     }
     let user: User = this.form.value;
