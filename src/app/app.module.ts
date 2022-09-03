@@ -25,7 +25,6 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { ProfileComponent } from './components/profile/profile.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
@@ -40,7 +39,6 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     ProfileComponent,
     AboutComponent,
     ContactComponent,
-    FooterComponent,
     LoginComponent,
     SignUpComponent,
   ],
