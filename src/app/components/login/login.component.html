@@ -32,7 +32,9 @@
               />
             </mat-form-field>
           </p>
-          <div *ngIf="form.invalid && (form.dirty || form.touched)">
+          <div
+            *ngIf="submitted && form.invalid && (form.dirty || form.touched)"
+          >
             <div *ngIf="username.errors?.['required']" class="error">
               Informe seu nome de usuário.
             </div>
