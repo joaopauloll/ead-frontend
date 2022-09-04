@@ -11,11 +11,11 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   private userSubject: BehaviorSubject<User>;
-  public user: Observable<User>;
+  public userObs: Observable<User>;
 
   constructor(private route: Router, private http: HttpClient) { 
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')!));
-    this.user = this.userSubject.asObservable(); 
+    this.userObs = this.userSubject.asObservable(); 
   }
 
   public get userValue(): User {
@@ -23,11 +23,12 @@ export class AuthService {
   }
 
   login(user: User) {
-    return this.http.post(environment.apiUrl + "/auth/login", user).pipe(map(_ => {
+    return this.http.post(environment.apiUrl + "/auth/login", user)
+    .pipe(map(userResponse => {
       // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
-      localStorage.setItem('user', JSON.stringify(user));
-      this.userSubject.next(user);
-      return user;
+      localStorage.setItem('user', JSON.stringify(userResponse));
+      this.userSubject.next(userResponse as User);
+      return userResponse;
   }));  
   }
 
@@ -35,7 +36,7 @@ export class AuthService {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
     this.userSubject.next(null as any);
-    this.route.navigate(['/login']);
+    // this.route.navigate(['/login']);
   }
 
 }

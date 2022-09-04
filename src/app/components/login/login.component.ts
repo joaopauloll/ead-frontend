@@ -42,13 +42,13 @@ export class LoginComponent implements OnInit{
 
     const getResponse = (response: any) => {
       console.log(response)
+      console.log(this.authService.userValue)
       this.response = response;
       this.user = response.user
       this.token = response.token
 
       // window.location.reload();
       this.route.navigate(['/'], { state: response })
-      console.log(this.response)
     }
 
     const showError = (response: any) => {

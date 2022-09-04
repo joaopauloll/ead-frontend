@@ -22,7 +22,6 @@ export class NavBarComponent implements OnInit {
 
   // user: any;
   value = '';
-  isLoggedIn = false;
   user = this.authService.userValue
   
 
