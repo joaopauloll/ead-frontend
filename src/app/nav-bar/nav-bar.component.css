@@ -76,10 +76,22 @@ footer {
 
 ::ng-deep .mat-menu-panel.menu { width: 400px; } 
 
-.name {
+.name, .email {
   text-align: center;
 }
 
-.email {
+.avatar {
   text-align: center;
+  vertical-align: middle;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #673ab7;
+  color: white;
+  margin-top: 1rem;
+}
+
+.letter {
+  vertical-align: middle;
 }

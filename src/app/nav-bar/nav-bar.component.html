@@ -28,9 +28,13 @@
       <mat-icon>person</mat-icon> {{ userValue.user.username }}
     </button>
     <mat-menu #menu="matMenu" class="menu">
-      <div class="menu-header">
-        <div>
-          <div class="avatar"></div>
+      <div>
+        <div class="menu-header">
+          <div class="avatar">
+            <span class="letter">{{
+              userValue.user.name[0].toUpperCase()
+            }}</span>
+          </div>
           <h1 class="name">{{ userValue.user.name }}</h1>
           <h3 class="email">{{ userValue.user.email }}</h3>
         </div>
