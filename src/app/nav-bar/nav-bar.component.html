@@ -23,20 +23,47 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <button *ngIf="userValue" (click)="logout()" mat-button class="app-title">
-    Sair
-  </button>
-  <button
-    *ngIf="userValue; else login"
-    mat-button
-    routerLink="profile"
-    class="app-title"
-  >
-    <mat-icon>person</mat-icon> {{ userValue.user.name }}
-  </button>
+  <div *ngIf="userValue; else login">
+    <button mat-stroked-button [matMenuTriggerFor]="menu" ng-init>
+      <mat-icon>person</mat-icon> {{ userValue.user.username }}
+    </button>
+    <mat-menu #menu="matMenu" class="menu">
+      <div class="menu-header">
+        <div>
+          <div class="avatar"></div>
+          <h1 class="name">{{ userValue.user.name }}</h1>
+          <h3 class="email">{{ userValue.user.email }}</h3>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <button
+        (click)="$event.stopPropagation()"
+        routerLink="profile"
+        mat-menu-item
+      >
+        <mat-icon>person</mat-icon>
+        Perfil
+      </button>
+      <button
+        (click)="$event.stopPropagation()"
+        routerLink="my-courses"
+        mat-menu-item
+      >
+        <mat-icon>book</mat-icon>
+        Meus Cursos
+      </button>
+      <mat-divider></mat-divider>
+      <div class="uxg-menu-footer">
+        <button (click)="logout()" mat-menu-item color="primary">
+          <mat-icon>exit_to_app</mat-icon>
+          Sair
+        </button>
+      </div>
+    </mat-menu>
+  </div>
   <ng-template #login>
     <button routerLink="login" mat-button class="app-title">
-      <mat-icon>person</mat-icon>
+      <mat-icon>person</mat-icon> Entrar
     </button>
   </ng-template>
 </mat-toolbar>

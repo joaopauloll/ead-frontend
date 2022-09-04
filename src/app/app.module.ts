@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -56,6 +57,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     MatProgressBarModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

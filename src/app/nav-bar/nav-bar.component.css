@@ -73,3 +73,13 @@ footer {
   vertical-align: middle;
   margin-right: 0;
 }
+
+::ng-deep .mat-menu-panel.menu { width: 400px; } 
+
+.name {
+  text-align: center;
+}
+
+.email {
+  text-align: center;
+}

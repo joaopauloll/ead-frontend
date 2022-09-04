@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit{
       this.response = response;
 
       // window.location.reload();
-      this.route.navigate(['/'], { state: response })
+      this.route.navigate(['/'], { state: response }).then(() => {
+        window.location.reload();
+      });
     }
 
     const showError = (response: any) => {
