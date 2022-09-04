@@ -1,54 +1,65 @@
 import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loading = false;
+export class LoginComponent implements OnInit{
+
   submitted = false;
-  error = '';
+  response: any;
+  user: any;
+  token: any;
+  error: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthService
-) { 
-    // redirect to home if already logged in
-    if (this.authService.userValue) { 
-        this.router.navigate(['/']);
-    }
-}
-
-  form: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
-
-  returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  constructor(private authService: AuthService, private route: Router) { }
+  
+  form!: FormGroup
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      username: new FormControl("", [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    });
+  }
 
   submit() {
-    if (this.form.invalid) {
-      return;
+    this.submitted = true
+    console.log(this.form.valid);
+    // console.log(this.form.controls['username'].errors?.['required'])
+
+    let user: User = this.form.value;
+
+    const getResponse = (response: any) => {
+      console.log(response)
+      this.response = response;
+      this.user = response.user
+      this.token = response.token
+
+      // window.location.reload();
+      this.route.navigate(['/'], { state: response })
+      console.log(this.response)
     }
 
-    const navigate = (data: any) => {
-      this.router.navigate([this.returnUrl])
-    }
-    const renderError = (error: any) => {
-      this.error = error;
-      this.loading = false;
+    const showError = (response: any) => {
+      this.error = response;
+      console.log(this.error)
     }
 
-    this.loading = true;
-        this.authService.login(this.form.value.username, this.form.value.password)
-            .pipe(first())
-            .subscribe({next: navigate, error: renderError});
+   this.authService.login(user).subscribe({ next: getResponse, error: showError })
   }
+
+  get username() { return this.form.get('username')!; }
+  get password() { return this.form.get('password')!; }
 
 }

@@ -32,10 +32,22 @@
               />
             </mat-form-field>
           </p>
-
-          <p *ngIf="error" class="error">
-            {{ error }}
-          </p>
+          <div
+            *ngIf="submitted && form.invalid && (form.dirty || form.touched)"
+          >
+            <div *ngIf="username.errors?.['required']" class="error">
+              Informe seu nome de usuário.
+            </div>
+            <div *ngIf="username.errors?.['minlength']" class="error">
+              Seu nome de usuário deve conter pelo menos 4 caracteres.
+            </div>
+            <div *ngIf="password.errors?.['required']" class="error">
+              Informe sua senha.
+            </div>
+            <div *ngIf="password.errors?.['minlength']" class="error">
+              Sua senha deve conter pelo menos 8 caracteres.
+            </div>
+          </div>
           <div class="button">
             <button routerLink="/sign-up" mat-button>Cadastrar</button>
             <button type="submit" mat-button>Login</button>

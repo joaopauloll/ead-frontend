@@ -30,7 +30,5 @@ export class SignUpComponent {
 
     this.userService.create(user).subscribe()
   }
-  
-  @Input() error: string | null | undefined;
 }
 

@@ -23,13 +23,16 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+  <button *ngIf="user" (click)="logout()" mat-button class="app-title">
+    Sair
+  </button>
   <button
-    *ngIf="isLoggedIn; else login"
+    *ngIf="user; else login"
     mat-button
     routerLink="profile"
     class="app-title"
   >
-    <mat-icon>person</mat-icon>
+    <mat-icon>person</mat-icon> {{ user.name }}
   </button>
   <ng-template #login>
     <button routerLink="login" mat-button class="app-title">
