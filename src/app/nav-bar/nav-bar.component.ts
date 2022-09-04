@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit {
 
   // user: any;
   value = '';
-  user = this.authService.userValue
+  userValue = this.authService.userValue
   
 
   ngOnInit(): void {

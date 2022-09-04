@@ -5,20 +5,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
+import { userResponse } from '../models/user-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private userSubject: BehaviorSubject<User>;
-  public userObs: Observable<User>;
+  private userSubject: BehaviorSubject<userResponse>;
+  public userObs: Observable<userResponse>;
 
   constructor(private route: Router, private http: HttpClient) { 
-    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')!));
+    this.userSubject = new BehaviorSubject<userResponse>(JSON.parse(localStorage.getItem('user')!));
     this.userObs = this.userSubject.asObservable(); 
   }
 
-  public get userValue(): User {
+  public get userValue(): userResponse {
     return this.userSubject.value;
   }
 
@@ -27,7 +28,7 @@ export class AuthService {
     .pipe(map(userResponse => {
       // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
       localStorage.setItem('user', JSON.stringify(userResponse));
-      this.userSubject.next(userResponse as User);
+      this.userSubject.next(userResponse as userResponse);
       return userResponse;
   }));  
   }
