@@ -56,28 +56,27 @@
           <!-- <label id="example-radio-group-label">Pick your role</label> -->
           <mat-radio-group
             aria-labelledby="example-radio-group-label"
-            class="example-radio-group"
+            class="radio-group"
             formControlName="role"
           >
             <mat-radio-button
               color="primary"
-              value="professor"
-              class="example-radio-button"
+              type="number"
+              value="1"
+              class="radio-button"
             >
               Professor
             </mat-radio-button>
             <mat-radio-button
               color="primary"
-              value="student"
-              class="example-radio-button"
+              type="number"
+              value="2"
+              class="radio-button"
             >
               Estudante
             </mat-radio-button>
           </mat-radio-group>
 
-          <p *ngIf="error" class="error">
-            {{ error }}
-          </p>
           <div class="button">
             <button mat-button routerLink="/login">Voltar</button>
             <button type="submit" mat-button>Cadastrar</button>

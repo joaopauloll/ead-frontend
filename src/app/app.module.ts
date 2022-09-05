@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -25,7 +26,6 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { ProfileComponent } from './components/profile/profile.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
@@ -40,7 +40,6 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     ProfileComponent,
     AboutComponent,
     ContactComponent,
-    FooterComponent,
     LoginComponent,
     SignUpComponent,
   ],
@@ -58,6 +57,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     MatProgressBarModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
