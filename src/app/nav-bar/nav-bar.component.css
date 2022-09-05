@@ -20,7 +20,7 @@ button {
 }
 
 mat-sidenav {
-  background-color: #FFE8F7;
+  background-color: #ffffff;
 }
 
 mat-sidenav-content {
@@ -90,8 +90,11 @@ footer {
   background-color: #673ab7;
   color: white;
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .letter {
-  vertical-align: middle;
+  margin: auto;
+  font-size: 2rem;
 }
