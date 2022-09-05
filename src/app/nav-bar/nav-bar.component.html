@@ -1,0 +1,109 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    (click)="snav.toggle()"
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-button routerLink="" class="app-title">Escola Enigma</button>
+  <span class="example-spacer"></span>
+  <mat-form-field class="example-form-field" appearance="fill">
+    <!-- <mat-label>Explorar</mat-label> -->
+    <mat-icon class="search-icon">search</mat-icon>
+    <input matInput type="text" [(ngModel)]="value" />
+    <button
+      *ngIf="value"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="value = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <div *ngIf="userValue; else login">
+    <button mat-stroked-button [matMenuTriggerFor]="menu" ng-init>
+      <mat-icon>person</mat-icon> {{ userValue.user.username }}
+    </button>
+    <mat-menu #menu="matMenu" class="menu">
+      <div>
+        <div class="menu-header">
+          <div class="avatar">
+            <span class="letter">{{
+              userValue.user.name[0].toUpperCase()
+            }}</span>
+          </div>
+          <h1 class="name">{{ userValue.user.name }}</h1>
+          <h3 class="email">{{ userValue.user.email }}</h3>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <button
+        (click)="$event.stopPropagation()"
+        routerLink="profile"
+        mat-menu-item
+      >
+        <mat-icon>person</mat-icon>
+        Perfil
+      </button>
+      <button
+        (click)="$event.stopPropagation()"
+        routerLink="my-courses"
+        mat-menu-item
+      >
+        <mat-icon>book</mat-icon>
+        Meus Cursos
+      </button>
+      <mat-divider></mat-divider>
+      <div class="uxg-menu-footer">
+        <button (click)="logout()" mat-menu-item color="primary">
+          <mat-icon>exit_to_app</mat-icon>
+          Sair
+        </button>
+      </div>
+    </mat-menu>
+  </div>
+  <ng-template #login>
+    <button routerLink="login" mat-button class="app-title">
+      <mat-icon>person</mat-icon> Entrar
+    </button>
+  </ng-template>
+</mat-toolbar>
+
+<mat-sidenav-container
+  class="example-sidenav-container"
+  [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+>
+  <mat-sidenav
+    #snav
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56"
+  >
+    <mat-nav-list>
+      <a mat-list-item routerLink=""><mat-icon>home</mat-icon>Home</a>
+      <a mat-list-item routerLink="courses"
+        ><mat-icon>lock</mat-icon>Todos os Cursos</a
+      >
+      <a mat-list-item routerLink="my-courses"
+        ><mat-icon>lock_open</mat-icon>Meus Cursos</a
+      >
+      <a mat-list-item routerLink="about"
+        ><mat-icon>group</mat-icon>Quem Somos</a
+      >
+      <a mat-list-item routerLink="contact">
+        <mat-icon class="phone-icon">phone</mat-icon> Fale Conosco
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<footer>
+  <p><mat-icon class="copyright">copyright</mat-icon><span>Enigma</span></p>
+</footer>
