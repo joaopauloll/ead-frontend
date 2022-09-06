@@ -9,6 +9,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { UserListComponent } from './principal/user-list/user-list.component';
+import { LogListComponent } from './principal/log-list/log-list.component';
 import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'user-list', component: UserListComponent },
+  { path: 'logs', component: LogListComponent },
 ];
 
 @NgModule({

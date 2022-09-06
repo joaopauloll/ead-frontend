@@ -30,6 +30,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { UserListComponent } from './principal/user-list/user-list.component';
+import { LogListComponent } from './principal/log-list/log-list.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     ContactComponent,
     LoginComponent,
     SignUpComponent,
+    UserListComponent,
+    LogListComponent,
   ],
   imports: [
     BrowserModule,
