@@ -9,11 +9,12 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'courses', component: CourseListComponent },
-  { path: 'my-courses', component: CourseListComponent },
+  { path: 'my-courses', component: CourseListComponent, canActivate: [AuthGuard] },
   { path: 'courses/:courseId', component: CourseDetailsComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'about', component: AboutComponent },
