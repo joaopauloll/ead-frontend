@@ -18,6 +18,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -53,6 +56,9 @@ import { LogListComponent } from './principal/log-list/log-list.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -64,9 +70,9 @@ import { LogListComponent } from './principal/log-list/log-list.component';
     MatCheckboxModule,
     MatRadioModule,
     MatMenuModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

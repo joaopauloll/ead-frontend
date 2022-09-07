@@ -28,6 +28,11 @@ export class UserService {
             user.role = "Estudante"
           }
         }
+        if (user.active == true) {
+          user.active = "Ativo"
+        } else {
+          user.active = "Inativo"
+        }
       })
       return users;
   }));
