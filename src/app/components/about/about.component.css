@@ -1,4 +1,5 @@
 body {
     background: url("src\assets\images\study-1.jpg");
     background-size: 100%;
+    min-height: 84.3vh;
 }

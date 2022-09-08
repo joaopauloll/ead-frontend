@@ -78,6 +78,7 @@
 >
   <mat-sidenav
     #snav
+    role="navigation"
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [fixedInViewport]="mobileQuery.matches"
     fixedTopGap="56"
@@ -115,7 +116,7 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content role="main">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
