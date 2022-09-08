@@ -2,6 +2,7 @@ import { Input, Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class SignUpComponent {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -29,6 +30,8 @@ export class SignUpComponent {
     let user: User = this.form.value;
 
     this.userService.create(user).subscribe()
+
+    this.router.navigate(["/login"])
   }
 }
 

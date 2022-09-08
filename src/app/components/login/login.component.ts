@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
   token: any;
   error: any;
 
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
   
   form!: FormGroup
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit{
       this.response = response;
 
       // window.location.reload();
-      this.route.navigate(['/'], { state: response }).then(() => {
+      this.router.navigate(['/'], { state: response }).then(() => {
         window.location.reload();
       });
     }
