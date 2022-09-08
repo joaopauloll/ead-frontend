@@ -1,8 +1,10 @@
-import { Input, Component, Output, EventEmitter } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +13,11 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent {
 
-  constructor(private userService: UserService, private router: Router) { }
+  error: any;
+
+  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar) { }
+
+  alert_msg = "Usuário cadastrado com sucesso!"
 
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -29,9 +35,25 @@ export class SignUpComponent {
     }
     let user: User = this.form.value;
 
-    this.userService.create(user).subscribe()
+    const showError = (response: any) => {
+      this.error = response.error
+      const errors = response.error;
+      this.error = Object.keys(errors).map(key => errors[key]);
+      console.log(response.error, 1)
+    }
 
-    this.router.navigate(["/login"])
+    this.userService.create(user).subscribe({
+      next: _ => this.router.navigate(["/login"]), 
+      error: showError})
+  }
+
+  openSnackBar(message: string) {
+    if (!this.error) {
+      this._snackBar.open(message);
+      this._snackBar._openedSnackBarRef?._dismissAfter(5000);
+    }  
   }
 }
+
+
 

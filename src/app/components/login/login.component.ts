@@ -1,4 +1,4 @@
-import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit{
 
   submit() {
     this.submitted = true
-    console.log(this.form.valid);
     // console.log(this.form.controls['username'].errors?.['required'])
 
     let user: User = this.form.value;
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit{
 
     const showError = (response: any) => {
       this.error = response;
-      console.log(this.error)
+      console.log(this.error, 2)
     }
 
    this.authService.login(user).subscribe({ next: getResponse, error: showError })
