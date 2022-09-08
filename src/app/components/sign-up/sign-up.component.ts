@@ -13,7 +13,7 @@ import { throwError } from 'rxjs';
 })
 export class SignUpComponent {
 
-  error: any;
+  errors: any[] = [];
 
   constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar) { }
 
@@ -36,10 +36,16 @@ export class SignUpComponent {
     let user: User = this.form.value;
 
     const showError = (response: any) => {
-      this.error = response.error
-      const errors = response.error;
-      this.error = Object.keys(errors).map(key => errors[key]);
-      console.log(response.error, 1)
+      this.errors = Object.values(response.error)
+      console.log(Object.values(response.error))
+      this.errors.forEach(error => {
+        if (Array.isArray(error)) {
+          var index = this.errors.indexOf(error)
+          if (index != -1) {
+            this.errors[index] = error[0];
+          }
+        }
+      })
     }
 
     this.userService.create(user).subscribe({
@@ -48,7 +54,7 @@ export class SignUpComponent {
   }
 
   openSnackBar(message: string) {
-    if (!this.error) {
+    if (!this.errors) {
       this._snackBar.open(message);
       this._snackBar._openedSnackBarRef?._dismissAfter(5000);
     }  

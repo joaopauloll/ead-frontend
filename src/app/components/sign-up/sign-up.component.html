@@ -77,6 +77,12 @@
             </mat-radio-button>
           </mat-radio-group>
 
+          <div *ngIf="errors">
+            <div *ngFor="let error of errors" class="errors">
+              {{ error }}
+            </div>
+          </div>
+
           <div class="button">
             <button type="button" mat-button routerLink="/login">Voltar</button>
             <button type="submit" mat-button (click)="openSnackBar(alert_msg)">
