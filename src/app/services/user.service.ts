@@ -38,4 +38,13 @@ export class UserService {
   }));
   }
 
+  update(user: User, id: number) {
+    return this.http.put(environment.apiUrl + "/api/users/" + id, user);
+  }
+
+  delete(id: any) {
+    console.log(id)
+    return this.http.delete(environment.apiUrl + "/api/users/" + id);
+  }
+
 }

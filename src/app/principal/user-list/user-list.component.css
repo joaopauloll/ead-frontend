@@ -13,3 +13,7 @@ mat-paginator {
   width: 90%;
   margin: auto;
 }
+
+.pointer:hover {
+  cursor: pointer;
+}
