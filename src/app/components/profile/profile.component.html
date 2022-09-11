@@ -1,1 +1,31 @@
-<p>profile works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="avatar">
+      <span class="letter">{{ user.name[0].toUpperCase() }}</span>
+    </div>
+    <button mat-button><mat-icon>edit</mat-icon></button>
+    <mat-divider></mat-divider>
+    <table>
+      <tr>
+        <td>Nome:</td>
+        <td>{{ user.name }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <td>Nome de Usuário:</td>
+        <td>{{ user.username }}</td>
+      </tr>
+    </table>
+    <mat-divider></mat-divider>
+  </body>
+</html>
