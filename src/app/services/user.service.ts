@@ -38,8 +38,9 @@ export class UserService {
   }));
   }
 
-  update(user: User, id: number) {
-    return this.http.put(environment.apiUrl + "/api/users/" + id, user);
+  update(user: User) {
+    console.log(user)
+    return this.http.put(environment.apiUrl + "/api/users/" + user.id, user);
   }
 
   delete(id: any) {

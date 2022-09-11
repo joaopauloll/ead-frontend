@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit{
       console.log(this.authService.userValue)
       this.response = response;
 
-      // window.location.reload();
       this.router.navigate(['/'], { state: response }).then(() => {
         window.location.reload();
       });
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit{
 
     const showError = (response: any) => {
       this.error = response;
-      console.log(this.error, 2)
+      console.log(this.error)
     }
 
    this.authService.login(user).subscribe({ next: getResponse, error: showError })
