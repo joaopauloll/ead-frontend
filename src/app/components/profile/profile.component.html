@@ -7,25 +7,76 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="avatar">
-      <span class="letter">{{ user.name[0].toUpperCase() }}</span>
+    <div *ngIf="router.url === '/profile'; else edit">
+      <div class="avatar">
+        <span class="letter">{{ user.name[0].toUpperCase() }}</span>
+      </div>
+      <button class="edit-button" mat-button routerLink="/edit/{{ user.id }}">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <mat-divider></mat-divider>
+      <table>
+        <tr>
+          <td>Nome:</td>
+          <td>{{ user.name }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+          <td>Nome de Usuário:</td>
+          <td>{{ user.username }}</td>
+        </tr>
+      </table>
+      <mat-divider></mat-divider>
     </div>
-    <button mat-button><mat-icon>edit</mat-icon></button>
-    <mat-divider></mat-divider>
-    <table>
-      <tr>
-        <td>Nome:</td>
-        <td>{{ user.name }}</td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td>{{ user.email }}</td>
-      </tr>
-      <tr>
-        <td>Nome de Usuário:</td>
-        <td>{{ user.username }}</td>
-      </tr>
-    </table>
-    <mat-divider></mat-divider>
+    <ng-template #edit>
+      <div class="avatar">
+        <span class="letter">{{ user.name[0].toUpperCase() }}</span>
+      </div>
+      <mat-divider></mat-divider>
+      <table>
+        <tr>
+          <td>Nome:</td>
+          <td>
+            <input
+              matInput
+              placeholder="Digite seu nome"
+              value="{{ user.name }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input
+              matInput
+              placeholder="Digite seu email"
+              value="{{ user.email }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Nome de Usuário:</td>
+          <td>
+            <input
+              matInput
+              placeholder="Digite seu nome de usuário"
+              value="{{ user.username }}"
+            />
+          </td>
+        </tr>
+      </table>
+      <mat-divider></mat-divider>
+      <button
+        class="save-button"
+        mat-flat-button
+        color="primary"
+        routerLink="/profile"
+      >
+        Salvar Alterações
+      </button>
+    </ng-template>
   </body>
 </html>

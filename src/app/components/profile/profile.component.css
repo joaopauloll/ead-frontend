@@ -50,6 +50,10 @@ mat-divider {
     min-width: 550px;
 }
 
-button {
+.edit-button {
     margin: 0px auto 20px;
+}
+
+.save-button {
+    margin-top: 15px;
 }
