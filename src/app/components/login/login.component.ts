@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit{
 
   submitted = false;
+  loading = false;
   response: any;
   user: any;
   token: any;
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit{
   }
 
   submit() {
+    this.loading = true
     this.submitted = true
     // console.log(this.form.controls['username'].errors?.['required'])
 
