@@ -21,6 +21,7 @@ export class UserListComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   deleted = false;
   routerSubscription: any;
+  userSubscription: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -43,7 +44,7 @@ export class UserListComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.userService.getAll().subscribe({ 
+    this.userSubscription = this.userService.getUsers().subscribe({ 
       next: users => (
       this.users = users, 
       this.dataSource = new MatTableDataSource(users),
@@ -60,18 +61,6 @@ export class UserListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  // private _filterStates(value: string): State[] {
-  //   const filterValue = value.toLowerCase();
-
-  //   return this.users.filter(state => state.Name.toLowerCase().indexOf(filterValue) === 0);
-  // }
-
-  // update(user: User): void {
-  //   this.userService.update(user).subscribe({ 
-  //     next: () => (user),
-  //     error: error => console.log(error)});
-  // }
 
   openConfirmationWindow(name: string, id: number) {
     if(confirm("Tem certeza que quer deletar "+ name + "?")) {
@@ -94,6 +83,9 @@ export class UserListComponent implements OnInit {
   ngOnDestroy() {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
+    }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
     }
   }
 

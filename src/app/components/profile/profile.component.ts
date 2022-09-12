@@ -82,6 +82,8 @@ export class ProfileComponent implements OnInit {
       // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       // this.router.onSameUrlNavigation = 'reload';
       this.router.navigate(['/profile'], { state: response }).then(() => {
+        // window.location.reload()
+        // window.onload = 
         this.openSnackBar("Usuário atualizado com sucesso!");
       });
 

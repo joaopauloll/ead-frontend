@@ -16,7 +16,7 @@ export class UserService {
   }
 
 
-  getAll() {
+  getUsers() {
     return this.http.get<any[]>(environment.apiUrl + "/api/users").pipe(map(users => {
       users.forEach(user => {
         if (user.role === 0) {
@@ -38,14 +38,27 @@ export class UserService {
   }));
   }
 
+  getLogs() {
+    return this.http.get<any[]>(environment.apiUrl + "/api/logs").pipe(map(logs => {
+      logs.forEach(log => {
+        if (log.user === null) {
+          log.username = "Anônimo"
+        } else {
+          log.username = log.user.username
+        }
+      })
+      return logs;
+  }));
+  };
+
   update(user: User) {
     console.log(user)
     return this.http.put(environment.apiUrl + "/api/users/" + user.id, user);
-  }
+  };
 
   delete(id: any) {
     console.log(id)
     return this.http.delete(environment.apiUrl + "/api/users/" + id);
-  }
+  };
 
 }

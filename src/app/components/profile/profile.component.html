@@ -11,9 +11,6 @@
       <div class="avatar">
         <span class="letter">{{ user.name[0].toUpperCase() }}</span>
       </div>
-      <button class="edit-button" mat-button routerLink="/edit/{{ user.id }}">
-        <mat-icon>edit</mat-icon>
-      </button>
       <mat-divider></mat-divider>
       <table>
         <tr>
@@ -30,6 +27,14 @@
         </tr>
       </table>
       <mat-divider></mat-divider>
+      <button
+        class="edit-button"
+        mat-flat-button
+        color="primary"
+        routerLink="/edit/{{ user.id }}"
+      >
+        Editar Perfil
+      </button>
     </div>
     <ng-template #edit>
       <div class="avatar">
@@ -95,6 +100,15 @@
           </tr>
         </table>
         <mat-divider></mat-divider>
+        <button
+          type="button"
+          class="back-button"
+          mat-button
+          color="primary"
+          routerLink="/profile"
+        >
+          Voltar
+        </button>
         <button
           type="submit"
           class="save-button"
