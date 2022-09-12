@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { NavBarComponent } from "../../nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-profile',
@@ -21,17 +22,12 @@ export class ProfileComponent implements OnInit {
   error: any;
   routerSubscription: any;
 
-  constructor(private userService: UserService, private authService: AuthService, public router: Router, private _snackBar: MatSnackBar) { 
-    // // everything inside this constructor is to refresh the page without reloading the component after deleting user
-    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
-    // this.routerSubscription = this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     // tell the router that I didn't visit or load the page previously
-    //     this.router.navigated = false;
-    //   }
-    // });
+  constructor(
+    private userService: UserService, 
+    private authService: AuthService, 
+    public router: Router, 
+    private _snackBar: MatSnackBar,
+    private navbar: NavBarComponent) { 
    }
 
   form!: FormGroup
@@ -68,23 +64,15 @@ export class ProfileComponent implements OnInit {
       updatedUser.password = this.form.value.newPassword
     }
 
-    const logout = (response: any) => {
-      this.authService.logout();
-      this.openSnackBar("Usuário atualizado com sucesso!");
-    }
-
     const updateUser = (response: any) => {
       updatedUser.name = response.name
       updatedUser.email = response.email
       updatedUser.username = response.username
       updatedUser.role = response.role
       this.authService.updateStorage(updatedUser, this.authService.userValue.token)
-      // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      // this.router.onSameUrlNavigation = 'reload';
       this.router.navigate(['/profile'], { state: response }).then(() => {
-        // window.location.reload()
-        // window.onload = 
-        this.openSnackBar("Usuário atualizado com sucesso!");
+        this.navbar.ngOnInit() 
+        this.openSnackBar("Usuário atualizado com sucesso!")
       });
 
     }
