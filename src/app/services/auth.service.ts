@@ -36,7 +36,6 @@ export class AuthService {
   }
 
   updateStorage(user: User, token: string) {
-    console.log(user)
     this.updatedUser.user = user;
     this.updatedUser.token = token;
     localStorage.setItem('user', JSON.stringify(this.updatedUser));
@@ -47,7 +46,9 @@ export class AuthService {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
     this.userSubject.next(null as any);
-    // this.route.navigate(['/login']);
+    this.route.navigate(['/login']).then(() => {
+      // window.location.reload();
+    });;
   }
 
 }

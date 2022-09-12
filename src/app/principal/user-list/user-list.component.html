@@ -61,7 +61,6 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Ações</th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon class="pointer">edit</mat-icon>
           <mat-icon
             class="pointer"
             (click)="openConfirmationWindow(element.name, element.id)"

@@ -45,7 +45,7 @@
                 matInput
                 formControlName="name"
                 placeholder="Digite seu nome"
-                value="{{ user.name }}"
+                [ngModel]="user.name"
               />
             </td>
           </tr>
@@ -56,7 +56,7 @@
                 matInput
                 formControlName="email"
                 placeholder="Digite seu email"
-                value="{{ user.email }}"
+                [ngModel]="user.email"
               />
             </td>
           </tr>
@@ -67,18 +67,29 @@
                 matInput
                 formControlName="username"
                 placeholder="Digite seu nome de usuário"
-                value="{{ user.username }}"
+                [ngModel]="user.username"
               />
             </td>
           </tr>
           <tr>
-            <td>Senha:</td>
+            <td>Senha Atual:</td>
             <td>
               <input
                 matInput
                 type="password"
                 formControlName="password"
                 placeholder="Digite sua senha atual"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Nova Senha (Opcional):</td>
+            <td>
+              <input
+                matInput
+                type="password"
+                formControlName="newPassword"
+                placeholder="Digite sua nova senha"
               />
             </td>
           </tr>
