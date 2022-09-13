@@ -37,6 +37,7 @@ import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { UserListComponent } from './principal/user-list/user-list.component';
 import { LogListComponent } from './principal/log-list/log-list.component';
+import { CourseFormComponent } from './components/course-form/course-form.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { LogListComponent } from './principal/log-list/log-list.component';
     SignUpComponent,
     UserListComponent,
     LogListComponent,
+    CourseFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -47,7 +47,7 @@ export class AuthService {
     localStorage.removeItem('user');
     this.userSubject.next(null as any);
     this.route.navigate(['/login']).then(() => {
-      // window.location.reload();
+      window.location.reload();
     });;
   }
 

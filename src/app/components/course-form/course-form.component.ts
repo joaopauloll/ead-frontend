@@ -1,36 +1,35 @@
 import { Component} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { CourseService } from 'src/app/services/course.service';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Course } from 'src/app/models/course.model';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-course-form',
+  templateUrl: './course-form.component.html',
+  styleUrls: ['./course-form.component.css']
 })
-export class SignUpComponent {
+export class CourseFormComponent {
 
-  errors: any[] = [];
+  errors!: any[];
 
-  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar) { }
+  constructor(
+    private courseService: CourseService, 
+    public router: Router, 
+    private _snackBar: MatSnackBar) { }
 
   form: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    role: new FormControl(''),
+    title: new FormControl(''),
+    description: new FormControl(''),
   });
 
   submit() {
     if (this.form.valid) {
-      var y: number = +this.form.value.role;
-      this.form.value.role = y;
       console.log(this.form.value);
     }
-    let user: User = this.form.value;
+    let course: Course = this.form.value;
 
     const showError = (response: any) => {
       this.errors = Object.values(response.error)
@@ -45,8 +44,8 @@ export class SignUpComponent {
       })
     }
 
-    this.userService.create(user).subscribe({
-      next: _ => this.router.navigate(["/login"]), 
+    this.courseService.create(course).subscribe({
+      next: _ => this.router.navigate(["/courses"]), 
       error: showError})
   }
 
@@ -57,6 +56,3 @@ export class SignUpComponent {
     }  
   }
 }
-
-
-

@@ -5,7 +5,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -28,9 +27,7 @@ export class UserListComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private userService: UserService, 
-    private _snackBar: MatSnackBar, 
-    private router: Router) { 
-    }
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.userSubscription = this.userService.getUsers().subscribe({ 

@@ -31,7 +31,6 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.authService.logout()
-    window.location.reload();
   }
 
 }

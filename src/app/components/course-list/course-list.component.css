@@ -14,6 +14,7 @@ body {
 mat-card {
     display: inline-block;
     text-align: left;
+    width: 350px;
 }
 
 .title {
