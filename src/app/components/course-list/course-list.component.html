@@ -46,7 +46,7 @@
       <button
         *ngIf="userLoggedIn.role == 1"
         class="add-button"
-        mat-flat-button
+        mat-button
         color="primary"
         routerLink="/create-course"
       >
@@ -55,7 +55,7 @@
       <mat-card *ngFor="let mycourse of my_courses" class="course-card">
         <mat-card-title>
           <a href="/courses/{{ mycourse.id }}" class="title">{{
-            course.title
+            mycourse.title
           }}</a>
         </mat-card-title>
         <mat-card-subtitle>Front-End</mat-card-subtitle>
@@ -64,14 +64,14 @@
         </mat-card-content>
         <mat-divider inset></mat-divider>
         <mat-card-actions
-          *ngIf="userLoggedIn.id == course.ownerId; else subscribe2"
+          *ngIf="userLoggedIn.id == mycourse.ownerId; else subscribe2"
         >
-          <button mat-button routerLink="/courses/edit/{{ course.id }}">
+          <button mat-button routerLink="/courses/edit/{{ mycourse.id }}">
             <mat-icon>edit</mat-icon>
           </button>
           <button
             mat-button
-            (click)="openConfirmationWindow(course.title, course.id)"
+            (click)="openConfirmationWindow(mycourse.title, mycourse.id)"
           >
             <mat-icon>delete</mat-icon>
           </button>

@@ -29,7 +29,10 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe({ 
-      next: courses => (this.courses = courses),
+      next: courses => (
+        this.courses = courses,
+        this.my_courses = courses.filter(course => course.ownerId == this.userLoggedIn.id),
+        console.log(this.my_courses)),
       error: error => console.log(error)});
   }
 

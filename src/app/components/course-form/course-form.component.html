@@ -8,10 +8,10 @@
   </head>
   <body>
     <mat-card>
-      <mat-card-title *ngIf="router.url === '/create-course'; else edit"
+      <mat-card-title *ngIf="router.url === '/create-course'; else edit1"
         >Cadastro de Curso</mat-card-title
       >
-      <ng-template #edit>
+      <ng-template #edit1>
         <mat-card-title>Edição de Curso</mat-card-title>
       </ng-template>
       <mat-card-content>
@@ -47,12 +47,22 @@
               Voltar
             </button>
             <button
+              *ngIf="router.url === '/create-course'; else edit2"
               type="submit"
               mat-button
               (click)="openSnackBar('Curso criado com sucesso!')"
             >
               Cadastrar Curso
             </button>
+            <ng-template #edit2>
+              <button
+                type="submit"
+                mat-button
+                (click)="openSnackBar('Curso editado com sucesso!')"
+              >
+                Salvar Alterações
+              </button>
+            </ng-template>
           </div>
         </form>
       </mat-card-content>

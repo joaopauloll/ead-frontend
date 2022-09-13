@@ -27,3 +27,11 @@ mat-card {
 .course-card {
     margin: 1rem;
 }
+
+.add-button {
+    margin: 20px;
+    background-color: white;
+    font-size: 20px;
+    padding: 5px;
+    width: 180px;
+}
