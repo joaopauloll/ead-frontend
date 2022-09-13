@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { Course } from 'src/app/models/course.model';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-course-list',
@@ -7,14 +9,23 @@ import { Router } from '@angular/router'
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
+  courseSubscription: any;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private courseService: CourseService) { }
 
-  courses = ["Curso Angular", "Curso ASP.NET Core", "Curso React", "Curso table_jim", "Curso testejp2", "Curso DudaGourmet"];
+  // courses!: Array<Course>;
+  course!: Course;
+  courses = ["Curso Angular", "Curso ASP.NET Core", "Curso React"];
   my_courses = ["Curso Angular", "Curso ASP.NET Core", "Curso React"];
 
+  Create(): void {
+    this.courseService.create(this.course).subscribe()
+  }
 
   ngOnInit(): void {
+    this.courseService.getCourses().subscribe({ 
+      next: courses => (this.courses = courses),
+      error: error => console.log(error)});
   }
 
 }
