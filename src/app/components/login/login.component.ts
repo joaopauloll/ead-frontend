@@ -1,4 +1,4 @@
-import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
@@ -12,12 +12,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit{
 
   submitted = false;
+  loading = false;
   response: any;
   user: any;
   token: any;
   error: any;
 
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
   
   form!: FormGroup
   ngOnInit(): void {
@@ -34,8 +35,8 @@ export class LoginComponent implements OnInit{
   }
 
   submit() {
+    this.loading = true
     this.submitted = true
-    console.log(this.form.valid);
     // console.log(this.form.controls['username'].errors?.['required'])
 
     let user: User = this.form.value;
@@ -45,8 +46,7 @@ export class LoginComponent implements OnInit{
       console.log(this.authService.userValue)
       this.response = response;
 
-      // window.location.reload();
-      this.route.navigate(['/'], { state: response }).then(() => {
+      this.router.navigate(['/'], { state: response }).then(() => {
         window.location.reload();
       });
     }

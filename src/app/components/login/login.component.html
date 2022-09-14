@@ -49,11 +49,14 @@
             </div>
           </div>
           <div class="button">
-            <button routerLink="/sign-up" mat-button>Cadastrar</button>
+            <button type="button" routerLink="/sign-up" mat-button>
+              Cadastrar
+            </button>
             <button type="submit" mat-button>Login</button>
           </div>
         </form>
       </mat-card-content>
     </mat-card>
+    <mat-spinner *ngIf="loading" [diameter]="50"></mat-spinner>
   </body>
 </html>

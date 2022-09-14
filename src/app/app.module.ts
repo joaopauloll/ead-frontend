@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -18,6 +18,11 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -28,6 +33,11 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { UserListComponent } from './principal/user-list/user-list.component';
+import { LogListComponent } from './principal/log-list/log-list.component';
+import { CourseFormComponent } from './components/course-form/course-form.component';
 
 
 @NgModule({
@@ -42,11 +52,17 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     ContactComponent,
     LoginComponent,
     SignUpComponent,
+    UserListComponent,
+    LogListComponent,
+    CourseFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -58,11 +74,15 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     MatCheckboxModule,
     MatRadioModule,
     MatMenuModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

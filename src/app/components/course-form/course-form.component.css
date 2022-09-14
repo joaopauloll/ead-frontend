@@ -1,16 +1,12 @@
 :host {
-  display: flex;
-  justify-content: center;
-  margin: 100px 0px;
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
 }
 
 .mat-form-field {
   width: 100%;
   min-width: 300px;
-}
-
-mat-card {
-  margin-top: 5rem;
 }
 
 mat-card-title,
@@ -19,7 +15,8 @@ mat-card-content {
   justify-content: center;
 }
 
-.error {
+.errors {
+  padding: 1px;
   color: red;
 }
 
@@ -28,7 +25,6 @@ mat-card-content {
   justify-content: flex-end;
 }
 
-mat-spinner {
-  margin: auto;
+textarea {
+    height: 50px;
 }
-  

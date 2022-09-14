@@ -14,6 +14,8 @@ export class AuthService {
   private userSubject: BehaviorSubject<userResponse>;
   public userObs: Observable<userResponse>;
 
+  updatedUser: userResponse = undefined || {user: {id: -1, name: "", email: "", username: "", password: "", role: -1}, token: ""};
+
   constructor(private route: Router, private http: HttpClient) { 
     this.userSubject = new BehaviorSubject<userResponse>(JSON.parse(localStorage.getItem('user')!));
     this.userObs = this.userSubject.asObservable(); 
@@ -33,11 +35,20 @@ export class AuthService {
   }));  
   }
 
+  updateStorage(user: User, token: string) {
+    this.updatedUser.user = user;
+    this.updatedUser.token = token;
+    localStorage.setItem('user', JSON.stringify(this.updatedUser));
+    this.userSubject.next(this.updatedUser);
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
     this.userSubject.next(null as any);
-    // this.route.navigate(['/login']);
+    this.route.navigate(['/login']).then(() => {
+      window.location.reload();
+    });;
   }
 
 }

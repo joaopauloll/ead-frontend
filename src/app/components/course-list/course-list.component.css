@@ -2,11 +2,19 @@ body {
     text-align: center;
     background: url("src\assets\images\study-1.jpg");
     background-size: 100%;
+    min-height: 84.3vh;    
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        background: linear-gradient(to right top, #5792e9, #09b3e4, #63cbcd, #acdbc3, #e2e9d3);
+    }
 }
 
 mat-card {
     display: inline-block;
     text-align: left;
+    width: 350px;
 }
 
 .title {
@@ -18,4 +26,12 @@ mat-card {
 
 .course-card {
     margin: 1rem;
+}
+
+.add-button {
+    margin: 20px;
+    background-color: white;
+    font-size: 20px;
+    padding: 5px;
+    width: 180px;
 }

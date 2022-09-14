@@ -1,0 +1,19 @@
+mat-form-field {
+  font-size: 14px;
+  width: 90%;
+  margin: 0 5% 0 5%;
+}
+
+table {
+  width: 90%;
+  margin: auto;
+}
+
+mat-paginator {
+  width: 90%;
+  margin: auto;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
