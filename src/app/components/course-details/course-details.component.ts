@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Lesson } from 'src/app/models/lesson.model';
 
 @Component({
   selector: 'app-course-details',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseDetailsComponent implements OnInit {
 
-  constructor() { }
+  lessons!: Array<Lesson>;
+  lesson!: Lesson;
 
-  lessons = [1, 2, 3, 4, 5, 6];
+  constructor() { }
 
   ngOnInit(): void {
   }

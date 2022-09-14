@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   loading = false;
   response: any;
   token: any;
-  error: any;
+  errors: any[] = [];
   routerSubscription: any;
 
   constructor(
@@ -78,15 +78,23 @@ export class ProfileComponent implements OnInit {
     }
 
     const showError = (response: any) => {
-      this.error = response;
-      console.log(this.error)
+      this.errors = Object.values(response.error)
+      console.log(Object.values(response.error))
+      this.errors.forEach(error => {
+        if (Array.isArray(error)) {
+          var index = this.errors.indexOf(error)
+          if (index != -1) {
+            this.errors[index] = error[0];
+          }
+        }
+      })
     }
 
    this.userService.update(updatedUser).subscribe({ next: updateUser, error: showError })
   }
 
   openSnackBar(message: string) {
-    if (!this.error) {
+    if (!this.errors) {
       this._snackBar.open(message);
       this._snackBar._openedSnackBarRef?._dismissAfter(5000);
     }  

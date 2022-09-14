@@ -15,7 +15,7 @@ body {
 .avatar {
     text-align: center;
     vertical-align: middle;
-    margin: 6rem auto 1rem;
+    margin: 4rem auto 1rem;
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
@@ -63,4 +63,9 @@ mat-divider {
     margin-right: 15px;
     border-style: solid;
     border-width: 2px;
+}
+
+.errors {
+    padding: 5px;
+    color: red;
 }

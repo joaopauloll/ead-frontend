@@ -1,4 +1,4 @@
-import { Lesson } from "./lessons.model";
+import { Lesson } from "./lesson.model";
 import { User } from "./user.model";
 
 export interface Course {

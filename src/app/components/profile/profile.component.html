@@ -117,6 +117,11 @@
         >
           Salvar Alterações
         </button>
+        <div *ngIf="errors">
+          <div *ngFor="let error of errors" class="errors">
+            {{ error }}
+          </div>
+        </div>
       </form>
     </ng-template>
   </body>
