@@ -36,7 +36,9 @@ export class CourseDetailsComponent implements OnInit {
         this.course = course,
         console.log(this.course),
         this.lessons = this.course.lessons,
-        this.students = this.course.students),
+        this.students = this.course.students,
+        console.log(this.userLoggedIn),
+        console.log(this.course.students[0])),
       error: error => console.log(error)});
   }
 

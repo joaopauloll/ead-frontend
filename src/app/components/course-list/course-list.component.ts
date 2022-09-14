@@ -54,11 +54,28 @@ export class CourseListComponent implements OnInit {
   }
 
   subscribeCourse(idCourse: number) {
-    this.courseService.subscribeCourse(idCourse).subscribe();
+    const refreshPage = () => {
+      this.ngOnInit()
+    }
+
+    this.courseService.subscribeCourse(idCourse).subscribe({next: refreshPage});
   }
 
   unsubscribeCourse(idCourse: number, idStudent: number) {
-    this.courseService.unsubscribeCourse(idCourse, idStudent).subscribe();
+    const refreshPage = () => {
+      this.ngOnInit()
+    }
+    
+    this.courseService.unsubscribeCourse(idCourse, idStudent).subscribe({next: refreshPage});
+  }
+
+  isStudent(course: Course) {
+    return course.students.some(user => {
+      if (user.id == this.userLoggedIn.id) {
+        return true;
+      }
+      return false;
+    });
   }
 
 }
