@@ -13,6 +13,7 @@ import { UserListComponent } from './principal/user-list/user-list.component';
 import { LogListComponent } from './principal/log-list/log-list.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { CourseFormComponent } from './components/course-form/course-form.component';
+import { LessonFormComponent } from './components/lesson-form/lesson-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'courses/:courseId', component: CourseDetailsComponent },
   { path: 'courses/edit/:courseId', component: CourseFormComponent },
   { path: 'create-course', component: CourseFormComponent },
+  { path: 'courses/:courseId/lessons/:lessonId', component: LessonFormComponent },
+  { path: 'courses/:courseId/create-lesson', component: LessonFormComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'edit/:id', component: ProfileComponent },
   { path: 'about', component: AboutComponent },

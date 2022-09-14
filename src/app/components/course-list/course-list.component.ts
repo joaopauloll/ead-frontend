@@ -12,7 +12,7 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
-  
+
   courseSubscription: any;
   deleted = false;
   courses!: Array<Course>;
@@ -51,6 +51,14 @@ export class CourseListComponent implements OnInit {
       this._snackBar.open(message);
       this._snackBar._openedSnackBarRef?._dismissAfter(5000);
     }  
+  }
+
+  subscribeCourse(idCourse: number) {
+    this.courseService.subscribeCourse(idCourse).subscribe();
+  }
+
+  unsubscribeCourse(idCourse: number, idStudent: number) {
+    this.courseService.unsubscribeCourse(idCourse, idStudent).subscribe();
   }
 
 }

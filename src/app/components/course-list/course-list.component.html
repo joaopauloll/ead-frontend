@@ -34,7 +34,13 @@
         </mat-card-actions>
         <ng-template #subscribe1>
           <mat-card-actions>
-            <button mat-flat-button color="primary">Matricule-se</button>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="subscribeCourse(course.id)"
+            >
+              Matricule-se
+            </button>
           </mat-card-actions>
         </ng-template>
         <mat-card-footer>
@@ -63,9 +69,7 @@
           {{ mycourse.description }}
         </mat-card-content>
         <mat-divider inset></mat-divider>
-        <mat-card-actions
-          *ngIf="userLoggedIn.id == mycourse.ownerId; else subscribe2"
-        >
+        <mat-card-actions>
           <button mat-button routerLink="/courses/edit/{{ mycourse.id }}">
             <mat-icon>edit</mat-icon>
           </button>
@@ -76,11 +80,6 @@
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
-        <ng-template #subscribe2>
-          <mat-card-actions>
-            <button mat-flat-button color="primary">Matricule-se</button>
-          </mat-card-actions>
-        </ng-template>
         <mat-card-footer>
           <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
         </mat-card-footer>

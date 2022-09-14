@@ -38,6 +38,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { UserListComponent } from './principal/user-list/user-list.component';
 import { LogListComponent } from './principal/log-list/log-list.component';
 import { CourseFormComponent } from './components/course-form/course-form.component';
+import { LessonFormComponent } from './components/lesson-form/lesson-form.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { CourseFormComponent } from './components/course-form/course-form.compon
     UserListComponent,
     LogListComponent,
     CourseFormComponent,
+    LessonFormComponent,
   ],
   imports: [
     BrowserModule,

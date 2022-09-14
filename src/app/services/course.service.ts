@@ -25,12 +25,18 @@ export class CourseService {
   }
 
   update(course: Course) {
-    console.log(course)
     return this.http.put(environment.apiUrl + "/api/courses/" + course.id, course);
   };
 
   delete(id: any) {
-    console.log(id)
     return this.http.delete(environment.apiUrl + "/api/courses/" + id);
+  };
+
+  subscribeCourse(idCourse: number) {
+    return this.http.put(environment.apiUrl + "/api/courses/" + idCourse + "/students", null);
+  };
+
+  unsubscribeCourse(idCourse: number, idStudent: number) {
+    return this.http.put(environment.apiUrl + "/api/courses/" + idCourse + "/students/" + idStudent, null);
   };
 }
