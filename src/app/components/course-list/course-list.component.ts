@@ -12,20 +12,20 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
+  
   courseSubscription: any;
   deleted = false;
+  courses!: Array<Course>;
+  course!: Course;
+  my_courses!: Array<Course>;
+  mycourse!: Course;
+  userLoggedIn: User = this.authService.userValue.user
 
   constructor(
     public router: Router, 
     private courseService: CourseService, 
     private authService: AuthService,
     private _snackBar: MatSnackBar, ) { }
-
-  courses!: Array<Course>;
-  course!: Course;
-  my_courses!: Array<Course>;
-  mycourse!: Course;
-  userLoggedIn: User = this.authService.userValue.user
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe({ 

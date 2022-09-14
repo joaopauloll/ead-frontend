@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CourseService } from 'src/app/services/course.service';
-import { User } from 'src/app/models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Course } from 'src/app/models/course.model';

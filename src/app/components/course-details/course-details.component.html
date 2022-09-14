@@ -7,6 +7,17 @@
     <title>Document</title>
   </head>
   <body>
+    <button
+      *ngIf="
+        course && userLoggedIn.role == 1 && userLoggedIn.id == course.ownerId
+      "
+      class="add-button"
+      mat-button
+      color="primary"
+      routerLink="/create-course"
+    >
+      Adicionar Aula</button
+    ><br />
     <mat-card *ngFor="let lesson of lessons" class="lesson-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>

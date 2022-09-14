@@ -20,6 +20,10 @@ export class CourseService {
     return this.http.get<any[]>(environment.apiUrl + "/api/courses");
   }
 
+  getById(id: number) {
+    return this.http.get<Course>(environment.apiUrl + "/api/courses/" + id);
+  }
+
   update(course: Course) {
     console.log(course)
     return this.http.put(environment.apiUrl + "/api/courses/" + course.id, course);
