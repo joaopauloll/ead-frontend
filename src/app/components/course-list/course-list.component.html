@@ -85,7 +85,10 @@
       >
         Adicionar Curso</button
       ><br />
-      <mat-card *ngFor="let mycourse of my_courses" class="course-card">
+      <mat-card
+        *ngFor="let mycourse of my_courses | myfilter: filterValue"
+        class="course-card"
+      >
         <mat-card-title>
           <a href="/courses/{{ mycourse.id }}" class="title">{{
             mycourse.title
