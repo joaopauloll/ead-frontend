@@ -1,1 +1,88 @@
-<p>lesson-form works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <mat-card>
+      <mat-card-title
+        *ngIf="
+          router.url == '/courses/' + courseId + '/create-lesson';
+          else edit1
+        "
+        >Cadastro de Aula</mat-card-title
+      >
+      <ng-template #edit1>
+        <mat-card-title>Edição de Aula</mat-card-title>
+      </ng-template>
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <p>
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                placeholder="Título"
+                formControlName="title"
+              />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                placeholder="Link"
+                formControlName="link"
+              />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <textarea
+                matInput
+                placeholder="Descrição"
+                formControlName="description"
+              ></textarea>
+            </mat-form-field>
+          </p>
+
+          <div *ngIf="errors">
+            <div *ngFor="let error of errors" class="errors">
+              {{ error }}
+            </div>
+          </div>
+
+          <div class="button">
+            <button type="button" mat-button routerLink="/my-courses">
+              Voltar
+            </button>
+            <button
+              *ngIf="
+                router.url === '/courses/' + courseId + '/create-lesson';
+                else edit2
+              "
+              type="submit"
+              mat-button
+              (click)="openSnackBar('Aula criada com sucesso!')"
+            >
+              Cadastrar Aula
+            </button>
+            <ng-template #edit2>
+              <button
+                type="submit"
+                mat-button
+                (click)="openSnackBar('Aula editada com sucesso!')"
+              >
+                Salvar Alterações
+              </button>
+            </ng-template>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </body>
+</html>

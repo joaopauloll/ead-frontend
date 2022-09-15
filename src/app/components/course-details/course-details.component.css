@@ -1,4 +1,4 @@
-.example-header-image {
+.header-image {
 background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
 background-size: cover;
 }
@@ -7,7 +7,7 @@ body {
     text-align: center;
     background: url("src\assets\images\study-1.jpg");
     background-size: 100%;
-    min-height: 84.3vh;    
+    min-height: 84.3vh;
 }
 
 @media screen and (max-width: 1000px) {

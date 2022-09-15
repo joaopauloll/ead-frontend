@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { Lesson } from 'src/app/models/lesson.model';
+import { LessonService } from 'src/app/services/lesson.service';
 
 @Component({
   selector: 'app-lesson-form',
@@ -7,9 +13,71 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LessonFormComponent implements OnInit {
 
-  constructor() { }
+  errors!: any[];
+  routeSub!: Subscription;
+  lessonId!: number;
+  courseId!: number;
+  updatedLesson!: Lesson;
 
-  ngOnInit(): void {
+  constructor(
+    private lessonService: LessonService, 
+    public router: Router, 
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar) { }
+
+  form: FormGroup = new FormGroup({
+    title: new FormControl(''),
+    link: new FormControl(''),
+    description: new FormControl(''),
+  });
+
+  ngOnInit() {
+    this.routeSub = this.route.params.subscribe(params => {
+      this.courseId = params['courseId']
+    });
+  }
+
+  submit() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
+
+    let lesson: Lesson = this.form.value;
+
+    const showError = (response: any) => {
+      this.errors = Object.values(response.error)
+      console.log(Object.values(response.error))
+      this.errors.forEach(error => {
+        if (Array.isArray(error)) {
+          var index = this.errors.indexOf(error)
+          if (index != -1) {
+            this.errors[index] = error[0];
+          }
+        }
+      })
+    }
+    if (this.router.url == '/courses/' + this.courseId + '/create-lesson') {
+      this.lessonService.create(lesson, this.courseId).subscribe({
+        next: _ => this.router.navigate(["/courses/" + this.courseId]), 
+        error: showError})
+    } else {
+      this.updatedLesson = lesson
+      this.updatedLesson.id = this.courseId;
+      this.lessonService.update(this.updatedLesson).subscribe({
+        next: _ => this.router.navigate(["/courses/" + this.courseId]), 
+        error: showError})
+    }
+  }
+
+  openSnackBar(message: string) {
+    if (!this.errors) {
+      this._snackBar.open(message);
+      this._snackBar._openedSnackBarRef?._dismissAfter(5000);
+    }  
+  }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
 }

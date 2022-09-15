@@ -54,19 +54,17 @@ export class CourseListComponent implements OnInit {
   }
 
   subscribeCourse(idCourse: number) {
-    const refreshPage = () => {
-      this.ngOnInit()
-    }
-
-    this.courseService.subscribeCourse(idCourse).subscribe({next: refreshPage});
+    this.courseService.subscribeCourse(idCourse).subscribe({
+      next: (() => this.ngOnInit()), 
+      error: error => console.log(error)
+    });
   }
 
   unsubscribeCourse(idCourse: number, idStudent: number) {
-    const refreshPage = () => {
-      this.ngOnInit()
-    }
-    
-    this.courseService.unsubscribeCourse(idCourse, idStudent).subscribe({next: refreshPage});
+    this.courseService.unsubscribeCourse(idCourse, idStudent).subscribe({
+      next: (() => this.ngOnInit()), 
+      error: error => console.log(error)
+    });
   }
 
   isStudent(course: Course) {
