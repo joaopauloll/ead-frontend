@@ -19,21 +19,29 @@ export class CourseListComponent implements OnInit {
   course!: Course;
   my_courses!: Array<Course>;
   mycourse!: Course;
-  userLoggedIn: User = this.authService.userValue.user
+  userLoggedIn!: User
 
   constructor(
     public router: Router, 
     private courseService: CourseService, 
     private authService: AuthService,
-    private _snackBar: MatSnackBar, ) { }
+    private _snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {
-    this.courseService.getCourses().subscribe({ 
-      next: courses => (
-        this.courses = courses,
-        this.my_courses = courses.filter(course => course.ownerId == this.userLoggedIn.id),
-        console.log(this.my_courses)),
-      error: error => console.log(error)});
+  ngOnInit(): void { 
+    if (this.authService.userValue) {
+      this.userLoggedIn = this.authService.userValue.user
+      this.courseService.getCourses().subscribe({ 
+        next: courses => (
+          this.courses = courses,
+          this.my_courses = courses.filter(course => course.ownerId == this.userLoggedIn.id),
+          console.log(this.my_courses)),
+        error: error => console.log(error)});
+    } else {
+      this.userLoggedIn = {id: -1, name: "", email: "", username: "", password: "", role: -1}
+      this.courseService.getCourses().subscribe({ 
+        next: courses => (this.courses = courses),
+        error: error => console.log(error)});
+    }
   }
 
   openConfirmationWindow(title: string, id: number) {

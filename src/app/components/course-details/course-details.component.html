@@ -19,11 +19,8 @@
       Adicionar Aula</button
     ><br />
     <mat-card *ngFor="let lesson of lessons" class="lesson-card">
-      <mat-card-header>
-        <div mat-card-avatar class="header-image"></div>
-        <mat-card-title>{{ lesson.title }}</mat-card-title>
-        <mat-card-subtitle>Tecnologia</mat-card-subtitle>
-      </mat-card-header>
+      <mat-card-title>{{ lesson.title }}</mat-card-title>
+      <mat-card-subtitle>Tecnologia</mat-card-subtitle>
       <!-- <iframe width="400" height="315" src="{{ lesson.link }}"> </iframe> -->
       <iframe
         width="400"
@@ -45,7 +42,20 @@
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
-      <mat-card-actions> </mat-card-actions>
+      <mat-card-actions *ngIf="userLoggedIn.role == 1">
+        <button
+          mat-button
+          routerLink="/courses/{{ courseId }}/lessons/{{ lesson.id }}"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-button
+          (click)="openConfirmationWindow(lesson.title, lesson.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
     </mat-card>
   </body>
 </html>

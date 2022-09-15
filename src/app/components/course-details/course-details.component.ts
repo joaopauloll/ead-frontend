@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -23,14 +24,15 @@ export class CourseDetailsComponent implements OnInit {
   routeSub!: Subscription;
   userLoggedIn: User = this.authService.userValue.user
   students!: Array<User>;
-  panelOpenState = false;
+  deleted = false;
 
   constructor(
     private lessonService: LessonService,
     private courseService: CourseService,
     private route: ActivatedRoute,
     private authService: AuthService,
-    public sanitizer: DomSanitizer) { }
+    public sanitizer: DomSanitizer,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
@@ -46,6 +48,23 @@ export class CourseDetailsComponent implements OnInit {
         this.students = this.course.students),
       error: error => console.log(error)
     });
+  }
+
+  openConfirmationWindow(title: string, id: number) {
+    if(confirm("Tem certeza que quer deletar "+ title + "?")) {
+      this.lessonService.delete(id).subscribe(() => (
+        this.deleted = true,
+        this.ngOnInit(),
+        this.openSnackBar("Aula deletada com sucesso!")
+      ));
+    }
+  }
+
+  openSnackBar(message: string) {
+    if (this.deleted) {
+      this._snackBar.open(message);
+      this._snackBar._openedSnackBarRef?._dismissAfter(5000);
+    }  
   }
 
   ngOnDestroy() {
