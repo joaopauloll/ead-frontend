@@ -1,8 +1,9 @@
 body {
     text-align: center;
     background: url("src\assets\images\study-1.jpg");
-    background-size: 100%;
+    background-size: cover;
     min-height: 84.3vh;
+    background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 1000px) {
@@ -27,4 +28,12 @@ mat-card {
     font-size: 20px;
     padding: 5px;
     width: 180px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 50px 30px 50px;
 }
