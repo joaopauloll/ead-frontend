@@ -7,6 +7,18 @@
     <title>Document</title>
   </head>
   <body>
+    <mat-form-field appearance="standard">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input />
+    </mat-form-field>
+    <button
+      class="back-button"
+      mat-button
+      color="primary"
+      routerLink="/my-courses"
+    >
+      Meus Cursos
+    </button>
     <button
       *ngIf="
         course && userLoggedIn.role == 1 && userLoggedIn.id == course.ownerId
@@ -19,7 +31,10 @@
       Adicionar Aula</button
     ><br />
     <div class="container">
-      <mat-card *ngFor="let lesson of lessons" class="lesson-card">
+      <mat-card
+        *ngFor="let lesson of lessons | myfilter: filterValue"
+        class="lesson-card"
+      >
         <mat-card-title>{{ lesson.title }}</mat-card-title>
         <mat-card-subtitle>Tecnologia</mat-card-subtitle>
         <!-- <iframe width="400" height="315" src="{{ lesson.link }}"> </iframe> -->
@@ -43,7 +58,9 @@
             </mat-expansion-panel>
           </mat-accordion>
         </mat-card-content>
-        <mat-card-actions *ngIf="userLoggedIn.role == 1">
+        <mat-card-actions
+          *ngIf="userLoggedIn.role == 1 && userLoggedIn.id == course.ownerId"
+        >
           <button
             mat-button
             routerLink="/courses/{{ courseId }}/lessons/{{ lesson.id }}"

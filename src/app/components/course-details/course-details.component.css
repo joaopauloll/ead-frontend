@@ -12,6 +12,12 @@ body {
     }
 }
 
+mat-form-field {
+    font-size: 14px;
+    width: 80%;
+    margin: 0 5% 0 5%;
+}
+
 mat-card {
     display: inline-block;
     text-align: left;
@@ -23,6 +29,14 @@ mat-card {
 }
 
 .add-button {
+    margin: 20px;
+    background-color: white;
+    font-size: 20px;
+    padding: 5px;
+    width: 180px;
+}
+
+.back-button {
     margin: 20px;
     background-color: white;
     font-size: 20px;

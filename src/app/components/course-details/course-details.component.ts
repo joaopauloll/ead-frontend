@@ -25,6 +25,7 @@ export class CourseDetailsComponent implements OnInit {
   userLoggedIn: User = this.authService.userValue.user
   students!: Array<User>;
   deleted = false;
+  filterValue!: string;
 
   constructor(
     private lessonService: LessonService,
@@ -65,6 +66,11 @@ export class CourseDetailsComponent implements OnInit {
       this._snackBar.open(message);
       this._snackBar._openedSnackBarRef?._dismissAfter(5000);
     }  
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filterValue = filterValue.trim().toLowerCase();
   }
 
   ngOnDestroy() {
