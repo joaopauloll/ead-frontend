@@ -7,11 +7,10 @@
     <title>Document</title>
   </head>
   <body>
-    <mat-form-field appearance="standard">
-      <mat-label>Filtro</mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input />
-    </mat-form-field>
     <button
+      *ngIf="
+        course && userLoggedIn.role == 1 && userLoggedIn.id == course.ownerId
+      "
       class="back-button"
       mat-button
       color="primary"
@@ -19,6 +18,7 @@
     >
       Meus Cursos
     </button>
+    <h1>Curso {{ course.title }}</h1>
     <button
       *ngIf="
         course && userLoggedIn.role == 1 && userLoggedIn.id == course.ownerId
@@ -30,6 +30,10 @@
     >
       Adicionar Aula</button
     ><br />
+    <mat-form-field appearance="standard">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input />
+    </mat-form-field>
     <div class="container">
       <mat-card
         *ngFor="let lesson of lessons | myfilter: filterValue"

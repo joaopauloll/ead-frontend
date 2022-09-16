@@ -29,19 +29,30 @@ mat-card {
 }
 
 .add-button {
-    margin: 20px;
+    margin: 50px 40px 0 40px;
     background-color: white;
     font-size: 20px;
     padding: 5px;
     width: 180px;
+    vertical-align: middle;
+}
+
+h1 {
+    font-family: 'Tangerine', serif;
+    font-size: 4vw;
+    text-shadow: 2px 2px 2px white;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 50px;
 }
 
 .back-button {
-    margin: 20px;
+    margin: 50px 40px 0 40px;
     background-color: white;
     font-size: 20px;
     padding: 5px;
     width: 180px;
+    vertical-align: middle;
 }
 
 .container {
