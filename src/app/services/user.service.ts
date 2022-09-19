@@ -51,12 +51,16 @@ export class UserService {
   }));
   };
 
+  getUserCourses(id: number) {
+    return this.http.get<any[]>(environment.apiUrl + "/api/users/" + id + "/courses")
+  };
+
   update(user: User) {
     console.log(user)
     return this.http.put(environment.apiUrl + "/api/users/" + user.id, user);
   };
 
-  delete(id: any) {
+  delete(id: number) {
     console.log(id)
     return this.http.delete(environment.apiUrl + "/api/users/" + id);
   };

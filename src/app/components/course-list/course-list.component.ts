@@ -5,6 +5,7 @@ import { Course } from 'src/app/models/course.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-course-list',
@@ -26,16 +27,27 @@ export class CourseListComponent implements OnInit {
     public router: Router, 
     private courseService: CourseService, 
     private authService: AuthService,
+    private userService: UserService,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void { 
+    const getCourses = (courses: Array<Course>) => {
+      this.courses = courses;
+      if (this.userLoggedIn.role == 1) {
+        this.my_courses = courses.filter(course => course.ownerId == this.userLoggedIn.id)
+      }
+      if (this.userLoggedIn.role == 2) {
+        this.userService.getUserCourses(this.userLoggedIn.id).subscribe({
+          next: (userCourses => (
+            this.my_courses = userCourses,
+            console.log(userCourses))),
+          error: error => console.log(error)})
+      }
+    }
     if (this.authService.userValue) {
       this.userLoggedIn = this.authService.userValue.user
       this.courseService.getCourses().subscribe({ 
-        next: courses => (
-          this.courses = courses,
-          this.my_courses = courses.filter(course => course.ownerId == this.userLoggedIn.id),
-          console.log(this.my_courses)),
+        next: getCourses,
         error: error => console.log(error)});
     } else {
       this.userLoggedIn = {id: -1, name: "", email: "", username: "", password: "", role: -1}
@@ -89,6 +101,5 @@ export class CourseListComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.filterValue = filterValue.trim().toLowerCase();
   }
-
 
 }
