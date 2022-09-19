@@ -19,7 +19,8 @@ export class CourseListComponent implements OnInit {
   course!: Course;
   my_courses!: Array<Course>;
   mycourse!: Course;
-  userLoggedIn!: User
+  userLoggedIn!: User;
+  filterValue!: string;
 
   constructor(
     public router: Router, 
@@ -83,5 +84,11 @@ export class CourseListComponent implements OnInit {
       return false;
     });
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filterValue = filterValue.trim().toLowerCase();
+  }
+
 
 }

@@ -7,8 +7,15 @@
     <title>Document</title>
   </head>
   <body>
+    <mat-form-field appearance="standard">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input />
+    </mat-form-field>
     <div *ngIf="router.url === '/courses'; else mycourses">
-      <mat-card *ngFor="let course of courses" class="course-card">
+      <mat-card
+        *ngFor="let course of courses | myfilter: filterValue"
+        class="course-card"
+      >
         <mat-card-title>
           <a
             *ngIf="userLoggedIn.id != -1; else notLoggedIn"
@@ -78,7 +85,10 @@
       >
         Adicionar Curso</button
       ><br />
-      <mat-card *ngFor="let mycourse of my_courses" class="course-card">
+      <mat-card
+        *ngFor="let mycourse of my_courses | myfilter: filterValue"
+        class="course-card"
+      >
         <mat-card-title>
           <a href="/courses/{{ mycourse.id }}" class="title">{{
             mycourse.title

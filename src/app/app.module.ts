@@ -36,6 +36,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { MyFilterPipe } from './helpers/my-filter.pipe';
 import { UserListComponent } from './principal/user-list/user-list.component';
 import { LogListComponent } from './principal/log-list/log-list.component';
 import { CourseFormComponent } from './components/course-form/course-form.component';
@@ -58,6 +59,7 @@ import { LessonFormComponent } from './components/lesson-form/lesson-form.compon
     LogListComponent,
     CourseFormComponent,
     LessonFormComponent,
+    MyFilterPipe,
   ],
   imports: [
     BrowserModule,
