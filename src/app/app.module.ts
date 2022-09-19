@@ -23,6 +23,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,9 +36,11 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { MyFilterPipe } from './helpers/my-filter.pipe';
 import { UserListComponent } from './principal/user-list/user-list.component';
 import { LogListComponent } from './principal/log-list/log-list.component';
 import { CourseFormComponent } from './components/course-form/course-form.component';
+import { LessonFormComponent } from './components/lesson-form/lesson-form.component';
 
 
 @NgModule({
@@ -55,6 +58,8 @@ import { CourseFormComponent } from './components/course-form/course-form.compon
     UserListComponent,
     LogListComponent,
     CourseFormComponent,
+    LessonFormComponent,
+    MyFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +84,7 @@ import { CourseFormComponent } from './components/course-form/course-form.compon
     MatSortModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

@@ -12,28 +12,37 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
+
   courseSubscription: any;
   deleted = false;
+  courses!: Array<Course>;
+  course!: Course;
+  my_courses!: Array<Course>;
+  mycourse!: Course;
+  userLoggedIn!: User;
+  filterValue!: string;
 
   constructor(
     public router: Router, 
     private courseService: CourseService, 
     private authService: AuthService,
-    private _snackBar: MatSnackBar, ) { }
+    private _snackBar: MatSnackBar) { }
 
-  courses!: Array<Course>;
-  course!: Course;
-  my_courses!: Array<Course>;
-  mycourse!: Course;
-  userLoggedIn: User = this.authService.userValue.user
-
-  ngOnInit(): void {
-    this.courseService.getCourses().subscribe({ 
-      next: courses => (
-        this.courses = courses,
-        this.my_courses = courses.filter(course => course.ownerId == this.userLoggedIn.id),
-        console.log(this.my_courses)),
-      error: error => console.log(error)});
+  ngOnInit(): void { 
+    if (this.authService.userValue) {
+      this.userLoggedIn = this.authService.userValue.user
+      this.courseService.getCourses().subscribe({ 
+        next: courses => (
+          this.courses = courses,
+          this.my_courses = courses.filter(course => course.ownerId == this.userLoggedIn.id),
+          console.log(this.my_courses)),
+        error: error => console.log(error)});
+    } else {
+      this.userLoggedIn = {id: -1, name: "", email: "", username: "", password: "", role: -1}
+      this.courseService.getCourses().subscribe({ 
+        next: courses => (this.courses = courses),
+        error: error => console.log(error)});
+    }
   }
 
   openConfirmationWindow(title: string, id: number) {
@@ -52,5 +61,34 @@ export class CourseListComponent implements OnInit {
       this._snackBar._openedSnackBarRef?._dismissAfter(5000);
     }  
   }
+
+  subscribeCourse(idCourse: number) {
+    this.courseService.subscribeCourse(idCourse).subscribe({
+      next: (() => this.ngOnInit()), 
+      error: error => console.log(error)
+    });
+  }
+
+  unsubscribeCourse(idCourse: number, idStudent: number) {
+    this.courseService.unsubscribeCourse(idCourse, idStudent).subscribe({
+      next: (() => this.ngOnInit()), 
+      error: error => console.log(error)
+    });
+  }
+
+  isStudent(course: Course) {
+    return course.students.some(user => {
+      if (user.id == this.userLoggedIn.id) {
+        return true;
+      }
+      return false;
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filterValue = filterValue.trim().toLowerCase();
+  }
+
 
 }

@@ -1,45 +1,56 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { CourseService } from 'src/app/services/course.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Course } from 'src/app/models/course.model';
 import { Subscription } from 'rxjs';
+import { Lesson } from 'src/app/models/lesson.model';
+import { LessonService } from 'src/app/services/lesson.service';
 
 @Component({
-  selector: 'app-course-form',
-  templateUrl: './course-form.component.html',
-  styleUrls: ['./course-form.component.css']
+  selector: 'app-lesson-form',
+  templateUrl: './lesson-form.component.html',
+  styleUrls: ['./lesson-form.component.css']
 })
-export class CourseFormComponent implements OnInit{
+export class LessonFormComponent implements OnInit {
 
   errors!: any[];
-  updatedCourse!: Course;
   routeSub!: Subscription;
+  lesson!: Lesson;
+  lessonId!: number;
   courseId!: number;
+  updatedLesson!: Lesson;
 
   constructor(
-    private courseService: CourseService, 
+    private lessonService: LessonService, 
     public router: Router, 
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar) { }
 
   form: FormGroup = new FormGroup({
     title: new FormControl(''),
+    link: new FormControl(''),
     description: new FormControl(''),
+    order: new FormControl(0),
   });
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
       this.courseId = params['courseId']
+      if (this.router.url != '/courses/' + this.courseId + '/create-lesson') {
+        this.lessonId = params['lessonId']
+      }
     });
+    if (this.router.url != '/courses/' + this.courseId + '/create-lesson') {
+      this.lessonService.getById(this.lessonId).subscribe({next: lesson => this.lesson = lesson, error: error => console.log(error)});
+    }
   }
 
   submit() {
     if (this.form.valid) {
       console.log(this.form.value);
     }
-    let course: Course = this.form.value;
+
+    let formLesson: Lesson = this.form.value;
 
     const showError = (response: any) => {
       this.errors = Object.values(response.error)
@@ -53,15 +64,15 @@ export class CourseFormComponent implements OnInit{
         }
       })
     }
-    if (this.router.url == '/create-course') {
-      this.courseService.create(course).subscribe({
-        next: _ => this.router.navigate(["/my-courses"]), 
+    if (this.router.url == '/courses/' + this.courseId + '/create-lesson') {
+      this.lessonService.create(formLesson, this.courseId).subscribe({
+        next: _ => this.router.navigate(["/courses/" + this.courseId]), 
         error: showError})
     } else {
-      this.updatedCourse = course
-      this.updatedCourse.id = this.courseId;
-      this.courseService.update(this.updatedCourse).subscribe({
-        next: _ => this.router.navigate(["/my-courses"]), 
+      this.updatedLesson = formLesson;
+      this.updatedLesson.id = this.lessonId;
+      this.lessonService.update(this.updatedLesson).subscribe({
+        next: _ => this.router.navigate(["/courses/" + this.courseId]), 
         error: showError})
     }
   }
@@ -76,4 +87,5 @@ export class CourseFormComponent implements OnInit{
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }
+
 }

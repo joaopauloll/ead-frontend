@@ -7,12 +7,28 @@
     <title>Document</title>
   </head>
   <body>
+    <mat-form-field appearance="standard">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input />
+    </mat-form-field>
     <div *ngIf="router.url === '/courses'; else mycourses">
-      <mat-card *ngFor="let course of courses" class="course-card">
+      <mat-card
+        *ngFor="let course of courses | myfilter: filterValue"
+        class="course-card"
+      >
         <mat-card-title>
-          <a href="/courses/{{ course.title }}" class="title">{{
-            course.title
-          }}</a>
+          <a
+            *ngIf="userLoggedIn.id != -1; else notLoggedIn"
+            href="/courses/{{ course.id }}"
+            class="title"
+          >
+            {{ course.title }}
+          </a>
+          <ng-template #notLoggedIn>
+            <a href="/login" class="title">
+              {{ course.title }}
+            </a>
+          </ng-template>
         </mat-card-title>
         <mat-card-subtitle>Front-End</mat-card-subtitle>
         <mat-card-content>
@@ -20,7 +36,7 @@
         </mat-card-content>
         <mat-divider inset></mat-divider>
         <mat-card-actions
-          *ngIf="userLoggedIn.id == course.ownerId; else subscribe1"
+          *ngIf="userLoggedIn.id == course.ownerId; else subscribe"
         >
           <button mat-button routerLink="/courses/edit/{{ course.id }}">
             <mat-icon>edit</mat-icon>
@@ -32,10 +48,27 @@
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
-        <ng-template #subscribe1>
-          <mat-card-actions>
-            <button mat-flat-button color="primary">Matricule-se</button>
+        <ng-template #subscribe>
+          <mat-card-actions *ngIf="!isStudent(course); else unsubscribe">
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="subscribeCourse(course.id)"
+            >
+              Matricule-se
+            </button>
           </mat-card-actions>
+          <ng-template #unsubscribe>
+            <mat-card-actions>
+              <button
+                mat-flat-button
+                color="primary"
+                (click)="unsubscribeCourse(course.id, userLoggedIn.id)"
+              >
+                Desmatricule-se
+              </button>
+            </mat-card-actions>
+          </ng-template>
         </ng-template>
         <mat-card-footer>
           <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
@@ -52,7 +85,10 @@
       >
         Adicionar Curso</button
       ><br />
-      <mat-card *ngFor="let mycourse of my_courses" class="course-card">
+      <mat-card
+        *ngFor="let mycourse of my_courses | myfilter: filterValue"
+        class="course-card"
+      >
         <mat-card-title>
           <a href="/courses/{{ mycourse.id }}" class="title">{{
             mycourse.title
@@ -63,9 +99,7 @@
           {{ mycourse.description }}
         </mat-card-content>
         <mat-divider inset></mat-divider>
-        <mat-card-actions
-          *ngIf="userLoggedIn.id == mycourse.ownerId; else subscribe2"
-        >
+        <mat-card-actions>
           <button mat-button routerLink="/courses/edit/{{ mycourse.id }}">
             <mat-icon>edit</mat-icon>
           </button>
@@ -76,11 +110,6 @@
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
-        <ng-template #subscribe2>
-          <mat-card-actions>
-            <button mat-flat-button color="primary">Matricule-se</button>
-          </mat-card-actions>
-        </ng-template>
         <mat-card-footer>
           <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
         </mat-card-footer>

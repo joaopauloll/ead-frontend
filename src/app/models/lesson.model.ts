@@ -1,3 +1,4 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
 export interface Lesson {
     id: number;
     title: string,
@@ -6,4 +7,5 @@ export interface Lesson {
     order: number,
     courseId: number,
     course: string,
+    linkSafe: SafeResourceUrl
 }
