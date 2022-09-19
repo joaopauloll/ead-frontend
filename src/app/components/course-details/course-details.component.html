@@ -18,7 +18,7 @@
     >
       Meus Cursos
     </button>
-    <h1>Curso {{ course.title }}</h1>
+    <h1 *ngIf="course">Curso {{ course.title }}</h1>
     <button
       *ngIf="
         course && userLoggedIn.role == 1 && userLoggedIn.id == course.ownerId

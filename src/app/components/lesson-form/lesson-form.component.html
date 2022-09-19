@@ -42,6 +42,18 @@
               ></textarea>
             </mat-form-field>
           </p>
+          <p>
+            <mat-form-field>
+              <input
+                type="number"
+                matInput
+                placeholder="
+                Posição"
+                formControlName="order"
+                min="0"
+              />
+            </mat-form-field>
+          </p>
 
           <div *ngIf="errors">
             <div *ngFor="let error of errors" class="errors">
@@ -103,6 +115,19 @@
                   formControlName="description"
                   [ngModel]="lesson.description"
                 ></textarea>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <input
+                  type="number"
+                  matInput
+                  placeholder="
+                  Posição"
+                  formControlName="order"
+                  [ngModel]="lesson.order"
+                  min="0"
+                />
               </mat-form-field>
             </p>
 

@@ -30,6 +30,7 @@ export class LessonFormComponent implements OnInit {
     title: new FormControl(''),
     link: new FormControl(''),
     description: new FormControl(''),
+    order: new FormControl(0),
   });
 
   ngOnInit() {
