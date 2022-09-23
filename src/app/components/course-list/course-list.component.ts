@@ -41,7 +41,8 @@ export class CourseListComponent implements OnInit {
           next: (userCourses => (
             this.my_courses = userCourses,
             console.log(userCourses))),
-          error: error => console.log(error)})
+          error: error => (console.log(error),
+            this.my_courses = [])})
       }
     }
     if (this.authService.userValue) {
@@ -83,7 +84,8 @@ export class CourseListComponent implements OnInit {
 
   unsubscribeCourse(idCourse: number, idStudent: number) {
     this.courseService.unsubscribeCourse(idCourse, idStudent).subscribe({
-      next: (() => this.ngOnInit()), 
+      next: (() => (this.ngOnInit(),
+      console.log("ok"))), 
       error: error => console.log(error)
     });
   }
