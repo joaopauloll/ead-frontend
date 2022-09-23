@@ -99,7 +99,7 @@
           {{ mycourse.description }}
         </mat-card-content>
         <mat-divider inset></mat-divider>
-        <mat-card-actions>
+        <mat-card-actions *ngIf="userLoggedIn.role == 1; else unsubscribe">
           <button mat-button routerLink="/courses/edit/{{ mycourse.id }}">
             <mat-icon>edit</mat-icon>
           </button>
@@ -110,6 +110,17 @@
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
+        <ng-template #unsubscribe>
+          <mat-card-actions>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="unsubscribeCourse(mycourse.id, userLoggedIn.id)"
+            >
+              Desmatricule-se
+            </button>
+          </mat-card-actions>
+        </ng-template>
         <mat-card-footer>
           <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
         </mat-card-footer>

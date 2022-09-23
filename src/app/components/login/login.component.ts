@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit{
   user: any;
   token: any;
   error: any;
+  errors: any[] = [];
 
   constructor(private authService: AuthService, private router: Router) { }
   
@@ -52,8 +53,17 @@ export class LoginComponent implements OnInit{
     }
 
     const showError = (response: any) => {
-      this.error = response;
-      console.log(this.error)
+      this.errors = Object.values(response.error)
+      console.log(Object.values(response.error))
+      this.errors.forEach(error => {
+        if (Array.isArray(error)) {
+          var index = this.errors.indexOf(error)
+          if (index != -1) {
+            this.errors[index] = error[0];
+          }
+        };
+        this.loading = false
+      })
     }
 
    this.authService.login(user).subscribe({ next: getResponse, error: showError })
