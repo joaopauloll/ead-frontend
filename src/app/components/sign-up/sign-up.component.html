@@ -1,101 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <mat-card>
-      <mat-card-title>Cadastro</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-          <p>
-            <mat-form-field>
-              <input
-                type="text"
-                matInput
-                placeholder="Nome"
-                formControlName="name"
-              />
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <input
-                type="email"
-                matInput
-                placeholder="Email"
-                formControlName="email"
-              />
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <input
-                type="text"
-                matInput
-                placeholder="Nome de Usuário"
-                formControlName="username"
-              />
-            </mat-form-field>
-          </p>
+<div class="container">
+  <mat-card>
+    <mat-card-title>Cadastro</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Nome"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input
+              type="email"
+              matInput
+              placeholder="Email"
+              formControlName="email"
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Nome de Usuário"
+              formControlName="username"
+            />
+          </mat-form-field>
+        </p>
 
-          <p>
-            <mat-form-field>
-              <input
-                type="password"
-                matInput
-                placeholder="Senha"
-                formControlName="password"
-              />
-            </mat-form-field>
-          </p>
+        <p>
+          <mat-form-field>
+            <input
+              type="password"
+              matInput
+              placeholder="Senha"
+              formControlName="password"
+            />
+          </mat-form-field>
+        </p>
 
-          <!-- <label id="example-radio-group-label">Pick your role</label> -->
-          <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="radio-group"
-            formControlName="role"
+        <!-- <label id="example-radio-group-label">Pick your role</label> -->
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="radio-group"
+          formControlName="role"
+        >
+          <mat-radio-button
+            color="primary"
+            type="number"
+            value="1"
+            class="radio-button"
           >
-            <mat-radio-button
-              color="primary"
-              type="number"
-              value="1"
-              class="radio-button"
-            >
-              Professor
-            </mat-radio-button>
-            <mat-radio-button
-              color="primary"
-              type="number"
-              value="2"
-              class="radio-button"
-            >
-              Estudante
-            </mat-radio-button>
-          </mat-radio-group>
+            Professor
+          </mat-radio-button>
+          <mat-radio-button
+            color="primary"
+            type="number"
+            value="2"
+            class="radio-button"
+          >
+            Estudante
+          </mat-radio-button>
+        </mat-radio-group>
 
-          <div *ngIf="errors">
-            <div *ngFor="let error of errors" class="errors">
-              {{ error }}
-            </div>
+        <div *ngIf="errors">
+          <div *ngFor="let error of errors" class="errors">
+            {{ error }}
           </div>
+        </div>
 
-          <div class="button">
-            <button type="button" mat-button routerLink="/login">Voltar</button>
-            <button
-              type="submit"
-              mat-flat-button
-              color="primary"
-              (click)="openSnackBar('Usuário cadastrado com sucesso!')"
-            >
-              Cadastrar
-            </button>
-          </div>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </body>
-</html>
+        <div class="button">
+          <button type="button" mat-button routerLink="/login">Voltar</button>
+          <button
+            type="submit"
+            mat-flat-button
+            color="primary"
+            (click)="openSnackBar('Usuário cadastrado com sucesso!')"
+          >
+            Cadastrar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

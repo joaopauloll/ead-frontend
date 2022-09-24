@@ -1,34 +1,41 @@
-body {
-    background: url("src\assets\images\workspace.jpg");
-    background-size: 100%;
-    min-height: 84.3vh;
-    text-align: left;
-}
-
-@media screen and (max-width: 1000px) {
-    body {
-        background: linear-gradient(to right top, #5792e9, #09b3e4, #63cbcd, #acdbc3, #e2e9d3);
-    }
-
-    h2 {
-        margin-right: 100%;
-    }
+.container {
+  background: url("src\assets\images\workspace.jpg");
+  background-size: 100%;
+  min-height: 84.3vh;
+  text-align: left;
 }
 
 h1 {
-    font-family: 'Tangerine', serif;
-    font-size: 5vw;
-    padding-top: 10%;
-    padding-left: 9%;
-    text-shadow: 2px 2px 2px white;
-    margin-bottom: 5%;
+  font-family: "Tangerine", serif;
+  font-size: 5vw;
+  padding-top: 10%;
+  padding-left: 9%;
+  text-shadow: 2px 2px 2px white;
+  margin-bottom: 5%;
 }
 
 h2 {
-    font-family: 'Tangerine', serif;
-    font-size: 20px;
-    padding-left: 9%;
-    font-weight: 900;
-    text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff;
-    margin-right: 50%;
+  font-family: "Tangerine", serif;
+  font-size: 20px;
+  padding-left: 9%;
+  font-weight: 900;
+  text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff;
+  margin-right: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    background: linear-gradient(
+      to right top,
+      #5792e9,
+      #09b3e4,
+      #63cbcd,
+      #acdbc3,
+      #e2e9d3
+    );
+  }
+
+  h2 {
+    margin-right: 9%;
+  }
 }
