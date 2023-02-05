@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { UserListComponent } from './user-list.component';
 
@@ -8,6 +10,10 @@ describe('UserListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule,
+        MatSnackBarModule
+      ],
       declarations: [ UserListComponent ]
     })
     .compileComponents();

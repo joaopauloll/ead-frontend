@@ -1,6 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseListComponent } from './course-list.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MyFilterPipe } from '../../helpers/my-filter.pipe';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -8,7 +11,11 @@ describe('CourseListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseListComponent ]
+      imports: [
+        HttpClientModule,
+        MatSnackBarModule
+      ],
+      declarations: [ CourseListComponent, MyFilterPipe ]
     })
     .compileComponents();
 
